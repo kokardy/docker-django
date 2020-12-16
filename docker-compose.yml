@@ -1,0 +1,48 @@
+version: "2"
+
+services:
+
+  django:
+    build:
+      context: ./django_image
+      args:
+        - "https_proxy=${https_proxy}"
+    #image: kokardy/django
+    restart: always
+    command: ["gunicorn", "pro1.wsgi:application", "-b", "0.0.0.0:8000"]
+    #command: ["tail", "-f", "/dev/null"]
+    depends_on:
+      - postgres
+    volumes_from:
+      - storage
+
+    #adminのcssとかjsとか
+    #/usr/local/lib/python3.9/site-packages/django/contrib/admin/static/admin
+    volumes:
+      - ./admin/static/admin:/usr/local/lib/python3.9/site-packages/django/contrib/admin/static/admin
+
+  postgres:
+    image: postgres:9.5-alpine
+    restart: always
+    environment:
+      - "POSTGRES_PASSWORD=akamakigamiaomakigamikimakigami"
+      - "POSTGRES_USR=postgres"
+    volumes_from:
+      - storage
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "10000:80"
+    volumes_from:
+      - storage
+
+  storage:
+    image: alpine
+    volumes:
+      - ./nginx/static:/usr/share/nginx/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./pg/initdb:/docker-entrypoint-initdb.d
+      - ./project:/asset/project
+
