@@ -16,11 +16,6 @@ services:
     volumes_from:
       - storage
 
-    #adminのcssとかjsとか
-    #/usr/local/lib/python3.9/site-packages/django/contrib/admin/static/admin
-    volumes:
-      - ./admin/static/admin:/usr/local/lib/python3.9/site-packages/django/contrib/admin/static/admin
-
   postgres:
     image: postgres:9.5-alpine
     restart: always
@@ -45,4 +40,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./pg/initdb:/docker-entrypoint-initdb.d
       - ./project:/asset/project
+
+      #PostgreSQLのデータ永続化
+      #- ./pg/pgdata:/var/lib/postgresql/data
 
