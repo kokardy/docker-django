@@ -9,8 +9,12 @@ services:
         - "https_proxy=${https_proxy}"
     #image: kokardy/django
     restart: always
-    command: ["gunicorn", "pro1.wsgi:application", "-b", "0.0.0.0:8000"]
+    #command: ["gunicorn", "pro1.wsgi:application", "-b", "0.0.0.0:8000"]
+    #command: ["./wait.sh", "&&", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
     #command: ["tail", "-f", "/dev/null"]
+    env_file:
+      - common_env
     depends_on:
       - postgres
     volumes_from:
@@ -19,9 +23,8 @@ services:
   postgres:
     image: postgres:9.5-alpine
     restart: always
-    environment:
-      - "POSTGRES_PASSWORD=akamakigamiaomakigamikimakigami"
-      - "POSTGRES_USR=postgres"
+    env_file:
+      - common_env
     volumes_from:
       - storage
 
