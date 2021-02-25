@@ -4,7 +4,7 @@ services:
 
   django:
     build:
-      context: ./django_image
+      context: ./django
       args:
         - "https_proxy=${https_proxy}"
         - "PROJECT_NAME=testpro"
