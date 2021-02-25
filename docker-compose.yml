@@ -7,12 +7,14 @@ services:
       context: ./django_image
       args:
         - "https_proxy=${https_proxy}"
+        - "PROJECT_NAME=testpro"
+        - "APP_NAME=testapp"
     #image: kokardy/django
     restart: always
-    #command: ["gunicorn", "pro1.wsgi:application", "-b", "0.0.0.0:8000"]
-    #command: ["./wait.sh", "&&", "python", "manage.py", "runserver", "0.0.0.0:8000"]
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-    #command: ["tail", "-f", "/dev/null"]
+    #command: ["./entrypoint.sh"]
+    command: ["tail", "-f", "/dev/null"]
+    environment:
+      - "PROJECT_NAME=project"
     env_file:
       - common_env
     depends_on:
