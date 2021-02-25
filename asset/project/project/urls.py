@@ -1,5 +1,4 @@
-#encoding: utf-8
-"""pro1 URL Configuration
+"""project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,11 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-import app1
+from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('django/admin/', admin.site.urls),
-    #path('app1/', include('app1.urls'),
 ]
