@@ -4,13 +4,19 @@ services:
 
   django:
     build:
-      context: ./django_image
+      context: ./django
       args:
         - "https_proxy=${https_proxy}"
+        - "PROJECT_NAME=testpro"
+        - "APP_NAME=testapp"
     #image: kokardy/django
     restart: always
-    command: ["gunicorn", "pro1.wsgi:application", "-b", "0.0.0.0:8000"]
-    #command: ["tail", "-f", "/dev/null"]
+    #command: ["./entrypoint.sh"]
+    command: ["tail", "-f", "/dev/null"]
+    environment:
+      - "PROJECT_NAME=project"
+    env_file:
+      - common_env
     depends_on:
       - postgres
     volumes_from:
@@ -19,9 +25,8 @@ services:
   postgres:
     image: postgres:9.5-alpine
     restart: always
-    environment:
-      - "POSTGRES_PASSWORD=akamakigamiaomakigamikimakigami"
-      - "POSTGRES_USR=postgres"
+    env_file:
+      - common_env
     volumes_from:
       - storage
 
