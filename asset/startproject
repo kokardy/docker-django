@@ -1,0 +1,4 @@
+#!/bin/sh
+
+django-admin startproject $1
+
