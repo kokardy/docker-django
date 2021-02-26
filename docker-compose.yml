@@ -9,8 +9,8 @@ services:
         - "https_proxy=${https_proxy}"
     #image: kokardy/django
     restart: always
-    #command: ["./entrypoint.sh"]
-    command: ["tail", "-f", "/dev/null"]
+    command: ["./entrypoint.sh"]
+    #command: ["tail", "-f", "/dev/null"]
     environment:
       - "PROJECT_NAME=project"
     env_file:
