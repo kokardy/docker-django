@@ -1,0 +1,7 @@
+#!/bin/sh
+
+PROJECT_NAME=$1
+
+cd $PROJECT_NAME
+./manage.py dumpdata
+
