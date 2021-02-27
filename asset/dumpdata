@@ -1,7 +1,8 @@
 #!/bin/sh
 
 PROJECT_NAME=$1
+APP_NAME=$2
 
 cd $PROJECT_NAME
-./manage.py dumpdata
+./manage.py dumpdata $APP_NAME
 
