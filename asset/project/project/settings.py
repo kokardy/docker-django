@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #django-filter
+    'django_filters',
     # GraphQL
     'graphene_django',
 
