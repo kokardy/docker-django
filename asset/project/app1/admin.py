@@ -6,6 +6,9 @@ from .models import *
 class BookAdmin(admin.ModelAdmin):
     model = Book
 
+    class Meta:
+        fields = ("id", "title", "author")
+
 admin.site.register(Book, BookAdmin)
 
 class PersonAdmin(admin.ModelAdmin):
