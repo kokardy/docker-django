@@ -20,10 +20,10 @@ class Person(models.Model):
         books_num = self.books.count()
         return f"{self.name} {self.age}歳 {books_num}冊"
 
-class User(models.Moel):
+class User(models.Model):
     first_name = models.CharField(max_length=255, db_index=True)
     last_name = models.CharField(max_length=255, db_index=True)
     age = models.IntegerField()
 
     def __str__(self):
-        return f"{last_name} {first_name} {age}歳"
+        return f"{self.last_name} {self.first_name} {self.age}歳"
