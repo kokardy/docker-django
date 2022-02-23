@@ -14,6 +14,8 @@ import project2
 from .secret_key import SECRET_KEY
 from pathlib import Path
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 GRAPHENE = {
     "SCHEMA": "project2.schema.schema",
 }
