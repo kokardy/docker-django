@@ -12,7 +12,7 @@ services:
     command: ["./entrypoint.sh"]
     #command: ["tail", "-f", "/dev/null"]
     environment:
-      - "PROJECT_NAME=project"
+      - "PROJECT_NAME=project2"
     env_file:
       - common_env
     depends_on:
@@ -37,6 +37,8 @@ services:
       - "10000:80"
     volumes_from:
       - storage
+    links:
+      - django
 
   storage:
     image: alpine
