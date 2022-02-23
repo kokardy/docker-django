@@ -11,6 +11,7 @@ class Book(models.Model):
     def __str__(self):
         return f"「{self.title}」{self.author}({self.publish_date})"
 
+
 class Person(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     age = models.IntegerField(db_index=True)
@@ -20,7 +21,8 @@ class Person(models.Model):
         books_num = self.books.count()
         return f"{self.name} {self.age}歳 {books_num}冊"
 
-class User(models.Moel):
+
+class User(models.Model):
     first_name = models.CharField(max_length=255, db_index=True)
     last_name = models.CharField(max_length=255, db_index=True)
     age = models.IntegerField()
