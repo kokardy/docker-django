@@ -1,15 +1,33 @@
 import graphene
+from graphene import relay
 from graphene_django import DjangoObjectType
-from graphene_django.filter import DjangoFilterConnectionField
+
+# from graphene_django.filter import DjangoFilterConnectionField
 
 from .models import Person, Book
 
 
 class PersonType(DjangoObjectType):
     class Meta:
+        interfaces = (relay.Node,)
         model = Person
         filter_fields = ("id", "name", "age")
         interfaces = (graphene.relay.Node,)
+
+
+class CreatePerson(graphene.Mutation):
+    class Arguments:
+        name = graphene.String(required=True)
+        age = graphene.Int(required=True)
+        books = graphene.List(graphene.Int)
+
+    person = graphene.Field(PersonType)
+
+    def mutate(root, info, name, age, books):
+        person = Person(name=name, age=age)
+        person.books = books
+        person.save()
+        return CreatePerson(person=person)
 
 
 class BookType(DjangoObjectType):
@@ -33,3 +51,7 @@ class Query(graphene.ObjectType):
 
     def resolve_goodbye(root, info):
         return "say Ya"
+
+
+class Mutate(graphene.ObjectType):
+    create_person = CreatePerson.Field()

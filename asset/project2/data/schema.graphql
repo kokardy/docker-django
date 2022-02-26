@@ -1,0 +1,56 @@
+schema {
+  query: Query
+  mutation: Mutate
+}
+
+type BookType {
+  id: ID!
+  author: String!
+  title: String!
+  publishDate: Date!
+  personSet(offset: Int, before: String, after: String, first: Int, last: Int, id: Float, name: String, age: Int): PersonTypeConnection!
+}
+
+type CreatePerson {
+  person: PersonType
+}
+
+scalar Date
+
+type Mutate {
+  createPerson(age: Int!, books: [Int], name: String!): CreatePerson
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type PersonType implements Node {
+  id: ID!
+  name: String!
+  age: Int!
+  books: [BookType!]!
+}
+
+type PersonTypeConnection {
+  pageInfo: PageInfo!
+  edges: [PersonTypeEdge]!
+}
+
+type PersonTypeEdge {
+  node: PersonType
+  cursor: String!
+}
+
+type Query {
+  persons(id: Int): PersonType
+  books: [BookType]
+  goodbye: String
+}
