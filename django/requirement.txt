@@ -6,3 +6,6 @@ graphene>=2.0
 graphene-django
 django-filter
 ipython
+schema
+graphql
+relay

@@ -18,6 +18,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 GRAPHENE = {
     "SCHEMA": "project2.schema.schema",
+    "SCHEMA_OUTPUT": "data/schema.graphql",
+    "SCHEMA_INDENT": 2,
 }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

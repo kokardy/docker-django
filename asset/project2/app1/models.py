@@ -13,7 +13,7 @@ class Book(models.Model):
 
 
 class Person(models.Model):
-    name = models.CharField(max_length=255, db_index=True)
+    name = models.CharField(max_length=255, db_index=True, unique=True)
     age = models.IntegerField(db_index=True)
     books = models.ManyToManyField(to=Book)
 
