@@ -3,8 +3,7 @@ django>=3.2
 djangorestframework
 psycopg2-binary
 graphene>=2.0
-graphene-django
+graphene-django==2.10
 django-filter
 ipython
-schema
-graphql
+requests
