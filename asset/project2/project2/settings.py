@@ -10,6 +10,19 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+#################django 4 error patch ##################
+########################################################
+import django
+
+try:
+    from django.utils.encoding import force_str
+
+    django.utils.encoding.force_text = force_str
+except:
+    pass
+########################################################
+
+
 import project2
 from .secret_key import SECRET_KEY
 from pathlib import Path
@@ -81,7 +94,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "project.wsgi.application"
+WSGI_APPLICATION = "project2.wsgi.application"
 
 
 # Database
