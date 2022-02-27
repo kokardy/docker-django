@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
 
@@ -21,6 +21,10 @@ services:
       - storage
     volumes:
       - ./asset:/asset
+  # logging:
+  #   driver: journald
+  #   options:
+  #     tag: "{{.ImageName}}.{{.Name}}.{{.FullID}}"
 
   postgres:
     image: postgres:9.5-alpine
@@ -39,6 +43,8 @@ services:
       - storage
     links:
       - django
+    depends_on:
+      - django
 
   storage:
     image: alpine
@@ -49,4 +55,4 @@ services:
 
       #PostgreSQLのデータ永続化
       #- ./pg/pgdata:/var/lib/postgresql/data
-
+#
