@@ -28,4 +28,4 @@ class User(models.Model):
     age = models.IntegerField()
 
     def __str__(self):
-        return f"{last_name} {first_name} {age}歳"
+        return f"{self.last_name} {self.first_name} {self.age}歳"

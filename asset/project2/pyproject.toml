@@ -1,0 +1,11 @@
+[tool.pyright]
+pythonVersion="3.10"
+# reportUnknownArgumentType = false
+# reportUnknownVariableType = false
+reportGeneralTypeIssues = false
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "project2.settings"

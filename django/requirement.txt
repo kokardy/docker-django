@@ -8,4 +8,3 @@ django-filter
 ipython
 schema
 graphql
-relay
